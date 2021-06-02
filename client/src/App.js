@@ -9,6 +9,8 @@ import Login from "./pages/Login";
 import { AuthProvider } from "./context/auth";
 import { MessageProvider } from "./context/message";
 import DynamicRoute from "./util/DynamicRoute";
+import Test from "./pages/Home/Test";
+import UploadForm from "./pages/Home/UploadForm";
 
 function App() {
   return (
@@ -18,9 +20,11 @@ function App() {
           <BrowserRouter>
             <Container className="pt-5">
               <Switch>
-                <DynamicRoute exact path="/" component={Home} authenticated />
+                {/* <DynamicRoute exact path="/" component={Home} authenticated />
                 <DynamicRoute path="/register" component={Register} guest />
                 <DynamicRoute path="/login" component={Login} guest />
+                <DynamicRoute path="/test" component={Test} /> */}
+                <DynamicRoute path="/upload" component={UploadForm} guest />
               </Switch>
             </Container>
           </BrowserRouter>

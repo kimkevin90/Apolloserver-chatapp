@@ -10,7 +10,7 @@ const contextMiddleware = require("./util/contextMiddleware");
 const server = new ApolloServer({
   typeDefs,
   resolvers,
-  context: contextMiddleware,
+  // context: contextMiddleware,
 });
 
 server.listen().then(({ url }) => {

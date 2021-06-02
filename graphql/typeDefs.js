@@ -14,6 +14,7 @@ module.exports = gql`
     getUsers: [User]!
     login(username: String!, password: String!): User!
     getMessages(from: String!): [Message]!
+    hello: String!
   }
   type Message {
     uuid: String!
@@ -30,8 +31,12 @@ module.exports = gql`
       confirmPassword: String!
     ): User!
     sendMessage(to: String!, content: String!): Message!
+    uploadFile(file: Upload!): File!
   }
   type Subscription {
     newMessage: Message!
+  }
+  type File {
+    url: String!
   }
 `;

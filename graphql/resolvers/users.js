@@ -4,6 +4,8 @@ const jwt = require("jsonwebtoken");
 const { Op } = require("sequelize");
 const { Message, User } = require("../../models");
 const { JWT_SECRET } = require("../../config/env.json");
+const path = require("path");
+const fs = require("fs");
 
 module.exports = {
   Query: {
@@ -89,6 +91,7 @@ module.exports = {
         throw err;
       }
     },
+    hello: () => "Hello world",
   },
   Mutation: {
     register: async (_, args) => {
@@ -141,6 +144,18 @@ module.exports = {
         }
         throw new UserInputError("잘못된 인풋", { errors });
       }
+    },
+    uploadFile: async (parent, { file }) => {
+      const { createReadStream, filename, mimetype, encoding } = await file;
+      console.log(file);
+      const stream = createReadStream();
+      const pathName = path.join(__dirname, `/public/images/${filename}`);
+      console.log("패스네임", pathName);
+      await stream.pipe(fs.createWriteStream(pathName));
+
+      return {
+        url: `http://localhost:4000/images/${filename}`,
+      };
     },
   },
 };
